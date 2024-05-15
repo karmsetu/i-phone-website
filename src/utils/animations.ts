@@ -1,5 +1,25 @@
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
 import { MutableRefObject } from 'react';
 import { Group, Object3DEventMap } from 'three';
+
+gsap.registerPlugin(ScrollTrigger);
+
+export const animateWithGsap = (
+    target: string,
+    animationProps: gsap.AnimationVars | null,
+    scrollProps?: object | null
+) => {
+    gsap.to(target, {
+        ...animationProps,
+        scrollTrigger: {
+            trigger: target,
+            toggleActions: 'restart reverse restart reverse',
+            start: 'top 85%',
+            ...scrollProps,
+        },
+    });
+};
 
 export const animateWithGsapTimeline = (
     timeline: gsap.core.Timeline,
