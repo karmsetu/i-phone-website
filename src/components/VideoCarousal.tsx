@@ -7,8 +7,10 @@ import { useEffect, useRef, useState } from 'react';
 import { hightlightsSlides } from '../constants';
 import { pauseImg, playImg, replayImg } from '../utils';
 
+type TypeType = 'video-end' | 'video-last' | 'video-reset' | 'pause' | 'play';
+
 const VideoCarousel = () => {
-    const videoRef = useRef([]);
+    const videoRef = useRef<HTMLVideoElement[]>([]);
     const videoSpanRef = useRef([]);
     const videoDivRef = useRef([]);
 
@@ -126,7 +128,7 @@ const VideoCarousel = () => {
     }, [startPlay, videoId, isPlaying, loadedData]);
 
     // vd id is the id for every video until id becomes number 3
-    const handleProcess = (type, i) => {
+    const handleProcess = (type: TypeType, i?: number) => {
         switch (type) {
             case 'video-end':
                 setVideo((pre) => ({ ...pre, isEnd: true, videoId: i + 1 }));

@@ -3,8 +3,14 @@ import { OrbitControls, PerspectiveCamera, View } from '@react-three/drei';
 import { Ref, Suspense } from 'react';
 import { Group, Vector3 } from 'three';
 import Lights from './Lights';
-import Iphone from './Iphone.jsx';
+import Iphone from './Iphone.tsx';
 import Loader from './Loader.js';
+
+export type ItemType = {
+    title: string;
+    color: string[];
+    img: string;
+};
 
 type ModelViewProps = {
     index: number;
@@ -12,11 +18,7 @@ type ModelViewProps = {
     gsapType: string;
     controlRef: any | null;
     setRotationState: any;
-    item: {
-        title: string;
-        color: string[];
-        img: string;
-    };
+    item: ItemType;
     size: string;
 };
 
